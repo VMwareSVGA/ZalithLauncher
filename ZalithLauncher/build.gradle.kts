@@ -1,13 +1,13 @@
 import com.android.build.api.variant.FilterConfiguration.FilterType.ABI
 import com.android.build.gradle.tasks.MergeSourceSetFolders
-import com.github.megatronking.stringfog.plugin.StringFogExtension
+
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android") version "2.0.21"
-    id("stringfog")
+    
 }
-apply(plugin = "stringfog")
+
 
 val getCFApiKey = {
     System.getenv("CURSEFORGE_API_KEY") ?: run {
@@ -54,12 +54,7 @@ configurations {
     }
 }
 
-configure<StringFogExtension> {
-    implementation = "com.github.megatronking.stringfog.xor.StringFogImpl"
-    fogPackages = arrayOf(nameId)
-    kg = com.github.megatronking.stringfog.plugin.kg.RandomKeyGenerator()
-    mode = com.github.megatronking.stringfog.plugin.StringFogMode.bytes
-}
+
 
 android {
     namespace = nameId
@@ -264,7 +259,6 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.github.angcyo.DslTablayout:TabLayout:3.6.5")
 
-    implementation("com.github.megatronking.stringfog:xor:5.0.0")
 
     implementation("top.fifthlight.touchcontroller:proxy-client-android:0.0.2")
 
